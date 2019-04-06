@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const users = require('./routes/api/users');
-const users = require('./routes/api/profile');
-const users = require('./routes/api/posts');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 
 const app = express();
 
