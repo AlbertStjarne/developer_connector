@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
+const users = require('./routes/api/users');
+const users = require('./routes/api/profile');
+const users = require('./routes/api/posts');
+
 const app = express();
 
 // DB config
@@ -15,6 +19,11 @@ mongoose
   .catch(err => console.log(err));
 
 app.get('/', (req, res) => res.send('Hello'));
+
+// Use Routes
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
 
 const port = process.env.PORT || 5000;
 
