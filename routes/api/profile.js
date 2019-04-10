@@ -3,6 +3,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+// Load validation
+const validateProfileInput = require('../../validation/profile');
+
 // Load profile model
 const Profile = require('../../models/Profile');
 // Load user profile
@@ -33,6 +36,14 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 // @desc    Create or edit user profile
 // @access  Private
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validateProfileInput(req.body);
+
+  // Check validation
+  if(!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors);
+  }
+
   // Get fields
   const profileFields = {};
   profileFields.user = req.user.id;
@@ -43,9 +54,10 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if(req.body.bio) profileFields.bio = req.body.bio;
   if(req.body.status) profileFields.status = req.body.status;
   if(req.body.githubusername) profileFields.githubusername = req.body.githubusername;
+
   // Skills - split into array
   if(typeof req.body.skills !== 'undefined') {
-    profileFields.skills = req.body.split('');
+    profileFields.skills = req.body.skills.split(',');
   }
   // Social
   profileFields.social = {};
