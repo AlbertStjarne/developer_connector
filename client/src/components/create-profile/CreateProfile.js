@@ -84,7 +84,54 @@ class CreateProfile extends Component {
                   error={errors.status}
                   info="Give us an idea of where you are at in your career"
                 />
-
+                <TextFieldGroup 
+                  placeholder="Company"
+                  name="company"
+                  value={this.state.company}
+                  onChange={this.onChange}
+                  error={errors.company}
+                  info="Could be your own company or one your work for"
+                />
+                <TextFieldGroup 
+                  placeholder="Website"
+                  name="website"
+                  value={this.state.website}
+                  onChange={this.onChange}
+                  error={errors.website}
+                  info="Could be your own website or a company one"
+                />
+                <TextFieldGroup 
+                  placeholder="Location"
+                  name="location"
+                  value={this.state.location}
+                  onChange={this.onChange}
+                  error={errors.location}
+                  info="City or city & state suggested (eg. Boston, MA)"
+                />
+                <TextFieldGroup 
+                  placeholder="Skills"
+                  name="skills"
+                  value={this.state.skills}
+                  onChange={this.onChange}
+                  error={errors.skills}
+                  info="Please use comma separated values (eg. HTML,CSS,JavaScript,PHP"
+                />
+                <TextFieldGroup 
+                  placeholder="GitHub Username"
+                  name="githubusername"
+                  value={this.state.githubusername}
+                  onChange={this.onChange}
+                  error={errors.githubusername}
+                  info="If you want your latest repos and a GitHub link, include your username"
+                />
+                <TextAreaFieldGroup 
+                  placeholder="Short Bio"
+                  name="bio"
+                  value={this.state.bio}
+                  onChange={this.onChange}
+                  error={errors.bio}
+                  info="Tell us a little about yourself"
+                />
               </form>
             </div>
           </div>
