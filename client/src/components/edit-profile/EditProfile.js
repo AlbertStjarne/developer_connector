@@ -7,6 +7,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProfile, getCurrentProfile } from '../../actions/profileActions';
+import isEmpty from '../../validation/is-empty';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -40,6 +41,26 @@ class CreateProfile extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.errors) {
       this.setState({errors: nextProps.errors});
+    }
+
+    if(nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+
+      // Bring skills array back to csv
+      const skillsCSV = profile.skills.join(',');
+
+      // If profile field doesn't exist, make empty string
+      profile.company = !isEmpty(profile.company) ? profile.company : '';
+      profile.website = !isEmpty(profile.website) ? profile.website : '';
+      profile.location = !isEmpty(profile.location) ? profile.location : '';
+      profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername : '';
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
+      profile.social = !isEmpty(profile.social) ? profile.social : {};
+      profile.twitter = !isEmpty(profile.twitter) ? profile.twitter : '';
+      profile.facebook = !isEmpty(profile.facebook) ? profile.facebook : '';
+      profile.linkedin = !isEmpty(profile.linkedin) ? profile.linkedin : '';
+      profile.youtube = !isEmpty(profile.youtube) ? profile.youtube : '';
+      profile.instagram = !isEmpty(profile.instagram) ? profile.instagram : '';
     }
   }
 
