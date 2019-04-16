@@ -61,6 +61,22 @@ class CreateProfile extends Component {
       profile.linkedin = !isEmpty(profile.linkedin) ? profile.linkedin : '';
       profile.youtube = !isEmpty(profile.youtube) ? profile.youtube : '';
       profile.instagram = !isEmpty(profile.instagram) ? profile.instagram : '';
+
+      // Set component fields state
+      this.setState({
+        handle: profile.handle,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        status: profile.status,
+        skills: skillsCSV,
+        githubusername: profile.githubusername,
+        bio: profile.bio,
+        twitter: profile.twitter,
+        facebook: profile.facebook,
+        linkedin: profile.linkedin,
+        youtube: profile.youtube,
+      });
     }
   }
 
