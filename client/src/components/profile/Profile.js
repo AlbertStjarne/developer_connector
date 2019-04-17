@@ -20,8 +20,8 @@ class Profile extends Component {
     const { profile, loading } = this.props.profile;
     let profileContent;
 
-    if(profile === 0 || loading) {
-      profileContent = <Spinner />
+    if(profile === null || loading) {
+      profileContent = <Spinner />;
     } else {
       profileContent = (
         <div>
@@ -35,32 +35,33 @@ class Profile extends Component {
           </div>
           <ProfileHeader profile={profile} />
           <ProfileAbout  profile={profile} />
-          <ProfileCreds education={profile.education} experience={profile.experience} />
-          <ProfileGithub />
-
+          <ProfileCreds 
+            education={profile.education} 
+            experience={profile.experience} 
+          />
+          {profile.githubusername ? (
+          <ProfileGithub username={profile.githubusername} />
+          ) : null}
         </div>
-      )
+      );
     }
 
     return (
       <div className="profile">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              {profileContent}
-            </div>
+            <div className="col-md-12">{profileContent}</div>
           </div>
         </div>
-        
       </div>
-    )
+    );
   }
 }
 
 Profile.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   profile: state.profile
